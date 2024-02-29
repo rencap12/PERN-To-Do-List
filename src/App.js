@@ -1,24 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Fragment, useState, useEffect } from 'react';
+import ListTodo from './components/ListToDo';
+import InputTodo from './components/inputTodoo';
 
 function App() {
+  const [todos, setTodos] = useState([]);
+
+  useEffect(() => {
+    fetchTodos();
+  }, []);
+
+  const fetchTodos = async () => {
+    try {
+      const response = await fetch('/todos');
+      const data = await response.json();
+      setTodos(data);
+    } catch (error) {
+      console.error('Error fetching todos:', error);
+    }
+  };
+
+  // Function to delete a todo by ID
+  const deleteTodo = async (id) => {
+    try {
+      await fetch(`/todos/${id}`, {
+        method: 'DELETE',
+      });
+      // Filter out the deleted todo from the todos array
+      setTodos(todos.filter(todo => todo.todo_id !== id));
+    } catch (error) {
+      console.error('Error deleting todo:', error);
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+      <InputTodo onAddTodo={fetchTodos} />
+      <ListTodo todos={todos} onDelete={deleteTodo} />
+    </Fragment>
   );
 }
 
