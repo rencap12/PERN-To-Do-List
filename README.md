@@ -1,5 +1,9 @@
-# Getting Started with Create React App
+# Used PostgreSQL, Express.js, React.js, Node.js, JavaScript, ElephantSQL, HTML, CSS to create a rudimentary full-stack app that takes in user input to add/delete todo task in database.
 
+
+
+
+# Getting Started with Create React App
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
