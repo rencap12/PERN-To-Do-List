@@ -23,8 +23,7 @@ const InputTodo = ({ onAddTodo }) => {
 
     return (
         <Fragment>
-            <h1>InputTodo</h1>
-            <h1 className="text-center mt-5">Todo list pern</h1>
+            <h1 className="text-center mt-5">PERN - ToDo List</h1>
             <form className="d-flex mt-5" onSubmit={onSubmitForm}>
                 <input
                     type="text"
